@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 # Equipment tracker
 
 system that tracks equipment
@@ -56,4 +58,8 @@ The following details how to deploy this application.
 
 ### Docker
 
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+# See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+# equipment_tracker
+
+> > > > > > > 63955b8556cb146f373d7aebdf6a45e632de82d5

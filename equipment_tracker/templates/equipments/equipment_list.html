@@ -1,0 +1,32 @@
+% extends base.html %}
+
+<h1>Equipment List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Serial Number</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Date Created</th>
+      <th>Date Updated</th>
+      <th>Created By</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for equipment in equipments %}
+    <tr>
+      <td>{{ equipment.name }}</td>
+      <td>{{ equipment.serial_number }}</td>
+      <td>{{ equipment.description }}</td>
+      <td>{{ equipment.location }}</td>
+      <td>{{ equipment.status }}</td>
+      <td>{{ equipment.date_created }}</td>
+      <td>{{ equipment.date_updated }}</td>
+      <td>{{ equipment.created_by.username }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

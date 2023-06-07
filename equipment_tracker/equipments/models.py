@@ -10,13 +10,6 @@ class Stock(BaseModel):
 
     name = models.CharField(max_length=100, blank=False, help_text="The name of the equipment", null=True)
     description = models.TextField(null=True)
-    location = models.CharField(
-        _("Current location"),
-        choices=ItemLocation.CHOICES,
-        max_length=50,
-        null=False,
-        default=ItemLocation.WAREHOUSE,
-    )
 
     def __str__(self):
         return str(self.name)

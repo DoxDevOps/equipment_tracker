@@ -1,6 +1,6 @@
 from django.urls import path
 
-from duo_connect.outbounds import views
+from equipment_tracker.equipments import views
 
 app_name = "equipments"
 

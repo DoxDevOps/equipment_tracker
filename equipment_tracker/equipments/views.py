@@ -1,33 +1,24 @@
-import logging
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import gettext_lazy as _
+from django.views.generic.edit import CreateView
 
-from django.db import transaction
-from rest_framework import viewsets
-
-from equipment_tracker.equipments.models import Stock, WarehouseStock
+from equipment_tracker.equipments.models import Stock
 
 
-class StockViewSet(viewsets.ModelViewSet):
-    """Stock viewset"""
+class StockCreateView(LoginRequiredMixin, PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    """Creates a stock item"""
 
-    queryset = Stock.objects.all().order_by("-created_at")
-    http_method_names = ["get", "post"]
+    # required perm for the view
+    permission_required: str = "equipments.add_stock"
 
-    def get_queryset(self):
-        """Filter by owner"""
-        stock = Stock.objects.filter(created_by=self.request.user).order_by("-created_at")
-        return stock
+    model = Stock
+    fields = [
+        "name",
+        "description",
+    ]
+    template_name = "equipments/create_equipment.html"
+    success_message = _("Stock successfully created")
 
-    def perform_create(self, stock_data):
-        with transaction.atomic():
-            stock_data["created_by"] = self.request.user
-            stock = Stock.objects.create(**stock_data)
 
-            # Update warehouse stock quantity to reflect the added item
-            warehouse = stock.warehouse
-            warehouse_stock, created = WarehouseStock.objects.get_or_create(
-                stock=stock, warehouse=warehouse, defaults={"quantity": 0}
-            )
-            warehouse_stock.quantity += stock.quantity
-            warehouse_stock.save()
-
-            logging.info(f"Successfully created stock {stock.id} for warehouse {warehouse.id}")
+create_stock_view = StockCreateView.as_view()

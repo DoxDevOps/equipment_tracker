@@ -1,0 +1,21 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+    {% translate "Add stock" %}
+{% endblock %}
+
+{% block inner %}
+
+<div class="py-3 my-3 px-4">
+    <form method="post" action="" class="form">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button>Submit</button>
+    </form>
+</div>
+
+
+{% endblock %}

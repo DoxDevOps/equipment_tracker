@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from equipment_tracker.common.base import BaseModel
-from equipment_tracker.equipments import ItemLocation
 
 
 class Stock(BaseModel):

@@ -8,7 +8,7 @@ class Stock(BaseModel):
     """Item or material"""
 
     name = models.CharField(max_length=100, blank=False, help_text="The name of the equipment", null=True)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -19,6 +19,7 @@ class Warehouse(BaseModel):
 
     name = models.CharField(max_length=100, blank=False, help_text="The name of the warehouse")
     description = description = models.TextField()
+    district = models.CharField(max_length=50, default="Lilongwe")
 
 
 class WarehouseStock(BaseModel):

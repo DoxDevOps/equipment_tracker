@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% url "equipments:update_stock" object.pk %}
+
+{% block content %}
+<div class="container">
+  <h1>Update Stock Item</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{ stock.name }}">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" name="description">{{ stock.description }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+{% endblock %}
